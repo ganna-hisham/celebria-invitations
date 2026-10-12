@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celebria — Luxury Digital Wedding & Event Invitations</title>
+  <meta name="description"
+    content="Premium interactive digital wedding invitations. Personalized, elegant, and unforgettable. Explore luxury templates with live RSVP, music, photo galleries & more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <!-- Font Awesome 6 (CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <!-- Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <span class="logo-mark"><i class="fa-solid fa-gem"></i></span>
+        <span class="logo-text">Celebria</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#templates">Templates</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </nav>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="#templates">Templates</a>
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <div class="hero-badge"><i class="fa-solid fa-sparkles"></i> Luxury Digital Invitations</div>
+      <h1 class="hero-title">
+        Invite Them Into<br />
+        <span class="gradient-text">Your Love Story</span>
+      </h1>
+      <p class="hero-subtitle">
+        Premium interactive wedding invitations that feel as special as the day itself.
+        Personalize every detail, share a private link, and create an unforgettable first impression.
+      </p>
+      <div class="hero-ctas">
+        <a href="#templates" class="btn btn-primary">
+          <i class="fa-solid fa-images"></i> Explore Templates
+        </a>
+        <a href="https://wa.me/15551234567?text=Hi%20Celebria%2C%20I%27d%20like%20to%20order%20a%20digital%20invitation"
+          class="btn btn-secondary" target="_blank" rel="noopener" id="wa-hero-btn">
+          <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
+        </a>
+      </div>
+      <div class="hero-metrics">
+        <div class="metric">
+          <span class="metric-value" id="metric1-value">50+</span>
+          <span class="metric-label" id="metric1-label">Interactive Templates</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value" id="metric2-value">24h</span>
+          <span class="metric-label" id="metric2-label">Express Delivery</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value" id="metric3-value">100%</span>
+          <span class="metric-label" id="metric3-label">Customizable</span>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="hero-scroll">
+      <span>Scroll to explore</span>
+      <div class="scroll-line"></div>
+    </div> -->
+  </section>
+
+  <!-- Template Gallery -->
+  <section class="templates" id="templates">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Curated Collection</span>
+        <h2 class="section-title">Signature Invitation Packages</h2>
+        <p class="section-desc">
+          Each template is designed for elegance and interaction. Choose a style that matches your celebration.
+        </p>
+      </div>
+      <div class="template-grid" id="template-grid">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Features -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Beyond Paper</span>
+        <h2 class="section-title">Interactive Features That Delight</h2>
+        <p class="section-desc">
+          Every invitation becomes a living experience — personalized, musical, and memorable.
+        </p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-user-pen"></i></div>
+          <h3>Guest Name Personalization</h3>
+          <p>Each guest receives a uniquely addressed invitation with their name woven into the design.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+          <h3>Google Maps & RSVP</h3>
+          <p>One-tap location, directions, and instant RSVP collection — all inside the invitation.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-music"></i></div>
+          <h3>Background Music</h3>
+          <p>Set the mood with your chosen song. Guests hear your love story the moment they open it.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-images"></i></div>
+          <h3>Photo Gallery & Timeline</h3>
+          <p>Share your journey with elegant photo stories and a beautiful timeline of your moments.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+          <h3>Opening Envelope Animation</h3>
+          <p>A cinematic envelope reveal that creates anticipation and pure magic on first open.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+          <h3>Countdown Timers</h3>
+          <p>Build excitement with a live countdown to the big day, right on the invitation.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-link"></i></div>
+          <h3>Private Shareable Link</h3>
+          <p>One elegant link. Share via WhatsApp, SMS, or email — no app downloads required.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-eye"></i></div>
+          <h3>Live Preview & Revisions</h3>
+          <p>See every change instantly and request unlimited polish until it’s perfect.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Simple Process</span>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-desc">From inspiration to invitation in four elegant steps.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Choose Your Template</h3>
+            <p>Browse our curated collection and select the design that captures your vision.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Customize Details</h3>
+            <p>Add names, date, venue, music, photos, and every personal touch that makes it yours.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Instant Live Preview & Approval</h3>
+            <p>Review the full interactive experience and request refinements until it’s flawless.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <h3>Share Your Private Link</h3>
+            <p>Receive your exclusive link and share it with guests — magic begins with a single tap.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Answers</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How long does delivery take?</span>
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Standard delivery is within 24–48 hours after final approval. Express 12-hour delivery is available for
+              most packages. You’ll receive a live preview link almost immediately after we begin customization.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I request a fully custom design?</span>
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely. While our signature templates are highly flexible, we also offer fully bespoke designs. Share
+              your vision, mood board, or brand colors and our designers will create something unique to your
+              celebration.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How does RSVP management work?</span>
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Guests respond directly inside the invitation. You receive real-time notifications and a private
+              dashboard showing who has confirmed, declined, or is pending — plus any meal preferences or notes they
+              leave.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I upload my own music or audio?</span>
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. You can upload your own track (MP3 or similar) or choose from our curated royalty-free library.
+              Background music plays automatically when the invitation opens (with a gentle mute option for guests).</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How many revisions are included?</span>
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>We include unlimited minor revisions during the preview stage. Major structural changes after approval
+              may incur a small fee. Our goal is that you feel completely confident before the final link is released.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta" id="contact">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Ready to Create Something Unforgettable?</h2>
+        <p>
+          Let’s design the invitation that becomes the first chapter of your celebration.
+          Message us on WhatsApp or tell us about your event below.
+        </p>
+        <div class="cta-actions">
+          <a href="https://wa.me/15551234567?text=Hi%20Celebria%2C%20I%27d%20like%20to%20start%20my%20invitation"
+            class="btn btn-primary btn-lg" target="_blank" rel="noopener" id="wa-cta-btn">
+            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+          <button class="btn btn-outline btn-lg" id="open-inquiry-form">
+            <i class="fa-solid fa-paper-plane"></i> Send Inquiry
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (no admin link) -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span class="logo-mark"><i class="fa-solid fa-gem"></i></span>
+          <span class="logo-text">Celebria</span>
+        </a>
+        <p>Luxury digital invitations for modern celebrations.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <a href="#templates">Templates</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-links">
+        <h4>Connect</h4>
+        <a href="https://instagram.com" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>
+          Instagram</a>
+        <a href="https://pinterest.com" target="_blank" rel="noopener"><i class="fa-brands fa-pinterest"></i>
+          Pinterest</a>
+        <a href="https://wa.me/15551234567" target="_blank" rel="noopener" id="wa-footer-btn"><i
+            class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Celebria. All rights reserved. · Powered by Celebria</p>
+    </div>
+  </footer>
+
+  <!-- Inquiry Modal -->
+  <div class="modal-overlay hidden" id="inquiry-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Send an Inquiry</h2>
+        <button class="modal-close" data-close="inquiry-modal" aria-label="Close">&times;</button>
+      </div>
+      <form id="inquiry-form">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="inquiry-name" required />
+        </div>
+        <div class="form-group">
+          <label>WhatsApp Number</label>
+          <input type="text" id="inquiry-whatsapp" required placeholder="+1 555 123 4567" />
+        </div>
+        <div class="form-group">
+          <label>Preferred Template</label>
+          <select id="inquiry-template">
+            <option value="">Select a package...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Wedding / Event Date</label>
+          <input type="date" id="inquiry-date" />
+        </div>
+        <div class="form-group">
+          <label>Message (optional)</label>
+          <textarea id="inquiry-message" rows="3" placeholder="Tell us about your vision..."></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" data-close="inquiry-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
