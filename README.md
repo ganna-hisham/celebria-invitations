@@ -13,7 +13,7 @@ Static site for GitHub Pages. Public landing page + password-protected admin.
 ```
 celebria/
 ├── index.html      # Public landing page (no admin links)
-├── admin.html      # Password-protected admin dashboard
+├── 12weirdo0butterfly34.html      # Password-protected admin dashboard
 ├── css/styles.css
 ├── js/app.js       # Public page logic
 ├── js/admin.js     # Admin + auth logic
@@ -22,7 +22,7 @@ celebria/
 
 ## Admin access
 
-- URL: `https://YOUR_USERNAME.github.io/REPO_NAME/admin.html`
+- URL: `https://YOUR_USERNAME.github.io/REPO_NAME/12weirdo0butterfly34.html`
 - **Default password:** `celebria2026`
 - Change it in `js/admin.js` → line with `ADMIN_PASSWORD`
 - Session lasts 8 hours (sessionStorage); use **Logout** to clear
@@ -44,7 +44,7 @@ Each browser has its own data — fine for demos; for production you need a real
 
 ## Quick local test
 
-Open `index.html` or `admin.html` in a browser, or:
+Open `index.html` or `12weirdo0butterfly34.html` in a browser, or:
 
 ```bash
 npx serve .
