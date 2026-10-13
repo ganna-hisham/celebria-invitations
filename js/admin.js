@@ -4,28 +4,8 @@
    ============================================================ */
 
 /* ---------- CHANGE THIS PASSWORD ---------- */
-const ADMIN_PASSWORD_HASH = '90515152eb91b5853f6560ef53bcbc00d72f107f918bb13b91fa067086e42b26';
+const ADMIN_PASSWORD_HASH = 'Aa@Ganna0hish*';
 
-// 2. دالة تشفير النص المدخل بـ SHA-256
-async function hashPassword(password) {
-  const msgUint8 = new TextEncoder().encode(password);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-// 3. طريقة التحقق أثناء الـ Login (حطيها جوه الـ Submit event listener عندك)
-async function checkLogin(inputPassword) {
-  const inputHash = await hashPassword(inputPassword);
-  
-  if (inputHash === ADMIN_PASSWORD_HASH) {
-    // الباسوورد صح
-    return true;
-  } else {
-    // الباسوورد غلط
-    return false;
-  }
-}
 /* ----------------------------------------- */
 
 const AUTH_KEY = 'celebria_admin_auth';
