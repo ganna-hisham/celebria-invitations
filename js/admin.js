@@ -140,7 +140,7 @@ function showLogin() {
 document.getElementById('login-form').addEventListener('submit', e => {
   e.preventDefault();
   const pw = document.getElementById('admin-password').value;
-  if (pw === ADMIN_PASSWORD) {
+  if (pw === ADMIN_PASSWORD_HASH) {
     setAuthenticated();
     showDashboard();
     showToast('Welcome back');
