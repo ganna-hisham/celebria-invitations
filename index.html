@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Celebria — Luxury Digital Wedding & Event Invitations</title>
-  <meta name="description"
-    content="Premium interactive digital wedding invitations. Personalized, elegant, and unforgettable. Explore luxury templates with live RSVP, music, photo galleries & more." />
+  <meta name="description" content="Premium interactive digital wedding invitations. Personalized, elegant, and unforgettable. Explore luxury templates with live RSVP, music, photo galleries & more." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <!-- Font Awesome 6 (CDN) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-
 <body>
   <!-- Navigation -->
   <header class="navbar" id="navbar">
@@ -65,7 +58,7 @@
           <i class="fa-solid fa-images"></i> Explore Templates
         </a>
         <a href="https://wa.me/15551234567?text=Hi%20Celebria%2C%20I%27d%20like%20to%20order%20a%20digital%20invitation"
-          class="btn btn-secondary" target="_blank" rel="noopener" id="wa-hero-btn">
+           class="btn btn-secondary" target="_blank" rel="noopener" id="wa-hero-btn">
           <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
         </a>
       </div>
@@ -84,10 +77,10 @@
         </div>
       </div>
     </div>
-    <!-- <div class="hero-scroll">
+    <div class="hero-scroll">
       <span>Scroll to explore</span>
       <div class="scroll-line"></div>
-    </div> -->
+    </div>
   </section>
 
   <!-- Template Gallery -->
@@ -100,6 +93,49 @@
           Each template is designed for elegance and interaction. Choose a style that matches your celebration.
         </p>
       </div>
+
+      <!-- Filters: Package Tier + Event Type -->
+      <div class="template-filters">
+        <div class="filter-row" data-filter-group="category">
+          <span class="filter-label"><i class="fa-solid fa-tags"></i> Package / السعر</span>
+          <div class="filter-btns">
+            <button type="button" class="filter-btn active" data-filter-value="All">All</button>
+            <button type="button" class="filter-btn" data-filter-value="Classic">Classic</button>
+            <button type="button" class="filter-btn" data-filter-value="Golden">Golden</button>
+            <button type="button" class="filter-btn" data-filter-value="VIP">VIP</button>
+          </div>
+          <select id="filter-category-select" class="filter-select" aria-label="Filter by package">
+            <option value="All">All packages</option>
+            <option value="Classic">Classic</option>
+            <option value="Golden">Golden</option>
+            <option value="VIP">VIP</option>
+          </select>
+        </div>
+        <div class="filter-row" data-filter-group="event">
+          <span class="filter-label"><i class="fa-solid fa-calendar-heart"></i> Occasion / المناسبة</span>
+          <div class="filter-btns">
+            <button type="button" class="filter-btn active" data-filter-value="All">All</button>
+            <button type="button" class="filter-btn" data-filter-value="Wedding">Wedding</button>
+            <button type="button" class="filter-btn" data-filter-value="Engagement">Engagement</button>
+            <button type="button" class="filter-btn" data-filter-value="Katb Ktab">Katb Ktab</button>
+            <button type="button" class="filter-btn" data-filter-value="Birthday">Birthday</button>
+            <button type="button" class="filter-btn" data-filter-value="Suboo">Suboo</button>
+            <button type="button" class="filter-btn" data-filter-value="Graduation">Graduation</button>
+            <button type="button" class="filter-btn" data-filter-value="Event">Event</button>
+          </div>
+          <select id="filter-event-select" class="filter-select" aria-label="Filter by occasion">
+            <option value="All">All occasions</option>
+            <option value="Wedding">Wedding</option>
+            <option value="Engagement">Engagement</option>
+            <option value="Katb Ktab">Katb Ktab</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Suboo">Suboo</option>
+            <option value="Graduation">Graduation</option>
+            <option value="Event">Event</option>
+          </select>
+        </div>
+      </div>
+
       <div class="template-grid" id="template-grid">
         <!-- Injected by JS -->
       </div>
@@ -216,8 +252,7 @@
             <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
           </button>
           <div class="faq-answer">
-            <p>Standard delivery is within 24–48 hours after final approval. Express 12-hour delivery is available for
-              most packages. You’ll receive a live preview link almost immediately after we begin customization.</p>
+            <p>Standard delivery is within 24–48 hours after final approval. Express 12-hour delivery is available for most packages. You’ll receive a live preview link almost immediately after we begin customization.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -226,9 +261,7 @@
             <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
           </button>
           <div class="faq-answer">
-            <p>Absolutely. While our signature templates are highly flexible, we also offer fully bespoke designs. Share
-              your vision, mood board, or brand colors and our designers will create something unique to your
-              celebration.</p>
+            <p>Absolutely. While our signature templates are highly flexible, we also offer fully bespoke designs. Share your vision, mood board, or brand colors and our designers will create something unique to your celebration.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -237,9 +270,7 @@
             <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
           </button>
           <div class="faq-answer">
-            <p>Guests respond directly inside the invitation. You receive real-time notifications and a private
-              dashboard showing who has confirmed, declined, or is pending — plus any meal preferences or notes they
-              leave.</p>
+            <p>Guests respond directly inside the invitation. You receive real-time notifications and a private dashboard showing who has confirmed, declined, or is pending — plus any meal preferences or notes they leave.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -248,8 +279,7 @@
             <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
           </button>
           <div class="faq-answer">
-            <p>Yes. You can upload your own track (MP3 or similar) or choose from our curated royalty-free library.
-              Background music plays automatically when the invitation opens (with a gentle mute option for guests).</p>
+            <p>Yes. You can upload your own track (MP3 or similar) or choose from our curated royalty-free library. Background music plays automatically when the invitation opens (with a gentle mute option for guests).</p>
           </div>
         </div>
         <div class="faq-item">
@@ -258,9 +288,7 @@
             <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
           </button>
           <div class="faq-answer">
-            <p>We include unlimited minor revisions during the preview stage. Major structural changes after approval
-              may incur a small fee. Our goal is that you feel completely confident before the final link is released.
-            </p>
+            <p>We include unlimited minor revisions during the preview stage. Major structural changes after approval may incur a small fee. Our goal is that you feel completely confident before the final link is released.</p>
           </div>
         </div>
       </div>
@@ -278,7 +306,7 @@
         </p>
         <div class="cta-actions">
           <a href="https://wa.me/15551234567?text=Hi%20Celebria%2C%20I%27d%20like%20to%20start%20my%20invitation"
-            class="btn btn-primary btn-lg" target="_blank" rel="noopener" id="wa-cta-btn">
+             class="btn btn-primary btn-lg" target="_blank" rel="noopener" id="wa-cta-btn">
             <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
           </a>
           <button class="btn btn-outline btn-lg" id="open-inquiry-form">
@@ -308,12 +336,9 @@
       </div>
       <div class="footer-links">
         <h4>Connect</h4>
-        <a href="https://instagram.com" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>
-          Instagram</a>
-          <a href="https://www.facebook.com/celebria0" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i>
-          facebook</a>
-        <a href="https://wa.me/15551234567" target="_blank" rel="noopener" id="wa-footer-btn"><i
-            class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        <a href="https://pinterest.com" target="_blank" rel="noopener"><i class="fa-brands fa-pinterest"></i> Pinterest</a>
+        <a href="https://wa.me/15551234567" target="_blank" rel="noopener" id="wa-footer-btn"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
       </div>
       <div class="footer-links">
         <h4>Legal</h4>
@@ -367,10 +392,5 @@
   <div class="toast hidden" id="toast"></div>
 
   <script src="js/app.js"></script>
-  <script type="module">
-  import { inject } from 'https://unpkg.com/@vercel/analytics/dist/index.mjs';
-  inject();
-  </script>
 </body>
-
 </html>
