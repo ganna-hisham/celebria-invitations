@@ -73,9 +73,14 @@
       <div class="admin-panel active" id="templates-panel">
         <div class="admin-header">
           <h1><i class="fa-solid fa-layer-group"></i> Template Management</h1>
-          <button class="btn btn-primary" id="add-template-btn">
-            <i class="fa-solid fa-plus"></i> Add New Template
-          </button>
+          <div class="admin-header-actions">
+            <button class="btn btn-outline" id="reset-templates-btn" title="Restore hardcoded catalog">
+              <i class="fa-solid fa-rotate-left"></i> Reset to Defaults
+            </button>
+            <button class="btn btn-primary" id="add-template-btn">
+              <i class="fa-solid fa-plus"></i> Add New Template
+            </button>
+          </div>
         </div>
         <div class="admin-table-wrap">
           <table class="admin-table">
@@ -83,7 +88,8 @@
               <tr>
                 <th>Thumbnail</th>
                 <th>Title</th>
-                <th>Category</th>
+                <th>Package</th>
+                <th>Event Type</th>
                 <th>Price</th>
                 <th>Demo</th>
                 <th>Actions</th>
@@ -184,18 +190,27 @@
           <input type="text" id="template-title" required placeholder="e.g. Royal Swan" />
         </div>
         <div class="form-group">
-          <label>Category</label>
+          <label>Package Tier / السعر</label>
           <select id="template-category" required>
-            <option value="Luxury">Luxury</option>
-            <option value="Minimalist">Minimalist</option>
-            <option value="Floral">Floral</option>
-            <option value="Modern">Modern</option>
-            <option value="Classic">Classic</option>
-            <option value="Bohemian">Bohemian</option>
+            <option value="Classic">Classic (كلاسيك)</option>
+            <option value="Golden">Golden (جولدن)</option>
+            <option value="VIP">VIP (في إي بي)</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Price / Package</label>
+          <label>Event Type / المناسبة</label>
+          <select id="template-event-type" required>
+            <option value="Wedding">Wedding (فرح)</option>
+            <option value="Engagement">Engagement (خطوبة)</option>
+            <option value="Katb Ktab">Katb Ktab (كتب كتاب)</option>
+            <option value="Birthday">Birthday (عيد ميلاد)</option>
+            <option value="Suboo">Suboo (سبوع)</option>
+            <option value="Graduation">Graduation (تخرج)</option>
+            <option value="Event">Corporate / General Event (إيفينت)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Price / السعر</label>
           <input type="text" id="template-price" required placeholder="e.g. $149" />
         </div>
         <div class="form-group">
@@ -204,7 +219,11 @@
         </div>
         <div class="form-group">
           <label>Thumbnail URL (optional)</label>
-          <input type="text" id="template-thumb" placeholder="https://..." />
+          <input type="text" id="template-thumb" placeholder="https://i.ibb.co/..../image.jpg" />
+          <small style="display:block;margin-top:6px;color:#6b6b6b;font-size:0.8rem;">
+            Use a <strong>direct image link</strong> (ends in .jpg/.png/.webp). Google Drive share links will not work.
+            Recommended: <a href="https://imgbb.com" target="_blank" rel="noopener">imgbb.com</a> → copy “Direct link”.
+          </small>
         </div>
         <div class="form-group">
           <label>Demo Link</label>
