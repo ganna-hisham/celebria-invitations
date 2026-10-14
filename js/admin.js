@@ -1,25 +1,116 @@
 /* ============================================================
    CELEBRIA — Admin Dashboard Logic
-   Password-protected. Client-side only (GitHub Pages).
+   Password-protected. Client-side only (static hosting).
    ============================================================ */
 
 /* ---------- CHANGE THIS PASSWORD ---------- */
-const ADMIN_PASSWORD_HASH = 'Aa@Ganna0hish*';
-
+const ADMIN_PASSWORD = 'Aa@Ganna0hish*';
 /* ----------------------------------------- */
 
 const AUTH_KEY = 'celebria_admin_auth';
 const AUTH_TTL_MS = 8 * 60 * 60 * 1000; // 8 hours
 
 const DEFAULT_TEMPLATES = [
-  { id: 't1', title: 'Royal Swan', category: 'Luxury', price: '$189', desc: 'Elegant swans & gold foil animation with cinematic envelope reveal.', thumb: '', demo: 'https://demo.celebria.com/royal-swan' },
-  { id: 't2', title: 'Minimalist Pearl', category: 'Minimalist', price: '$129', desc: 'Clean typography, soft pearl tones, and refined motion design.', thumb: '', demo: 'https://demo.celebria.com/minimalist-pearl' },
-  { id: 't3', title: 'Golden Blossom', category: 'Floral', price: '$159', desc: 'Blooming florals with interactive photo timeline and soft music.', thumb: '', demo: 'https://demo.celebria.com/golden-blossom' },
-  { id: 't4', title: 'Midnight Velvet', category: 'Modern', price: '$169', desc: 'Deep tones, gold accents, and dramatic countdown experience.', thumb: '', demo: 'https://demo.celebria.com/midnight-velvet' },
-  { id: 't5', title: 'Ivory Classic', category: 'Classic', price: '$149', desc: 'Timeless script, soft cream palette, and traditional elegance.', thumb: '', demo: 'https://demo.celebria.com/ivory-classic' },
-  { id: 't6', title: 'Desert Rose', category: 'Bohemian', price: '$139', desc: 'Warm earth tones, dried florals, and free-spirited storytelling.', thumb: '', demo: 'https://demo.celebria.com/desert-rose' },
-  { id: 't7', title: 'Celestial Garden', category: 'Luxury', price: '$199', desc: 'Starry night sky, constellation map, and glowing envelope animation.', thumb: '', demo: 'https://demo.celebria.com/celestial-garden' },
-  { id: 't8', title: 'Silk & Stone', category: 'Modern', price: '$154', desc: 'Architectural lines, stone textures, and understated luxury.', thumb: '', demo: 'https://demo.celebria.com/silk-stone' }
+  {
+    id: 't1',
+    title: 'Royal Swan',
+    category: 'VIP',
+    event_type: 'Wedding',
+    price: '$189',
+    desc: 'Elegant swans & gold foil animation with cinematic envelope reveal.',
+    thumb: '',
+    demo: 'https://demo.celebria.com/royal-swan'
+  },
+  {
+    id: 't2',
+    title: 'Minimalist Pearl',
+    category: 'Classic',
+    event_type: 'Engagement',
+    price: '$129',
+    desc: 'Clean typography, soft pearl tones, and refined motion design.',
+    thumb: '',
+    demo: 'https://demo.celebria.com/minimalist-pearl'
+  },
+  {
+    id: 't3',
+    title: 'Golden Blossom',
+    category: 'Golden',
+    event_type: 'Wedding',
+    price: '$159',
+    desc: 'Blooming florals with interactive photo timeline and soft music.',
+    thumb: '',
+    demo: 'https://demo.celebria.com/golden-blossom'
+  },
+  {
+    id: 't4',
+    title: 'Midnight Velvet',
+    category: 'VIP',
+    event_type: 'Katb Ktab',
+    price: '$169',
+    desc: 'Deep tones, gold accents, and dramatic countdown experience.',
+    thumb: '',
+    demo: 'https://demo.celebria.com/midnight-velvet'
+  },
+  {
+    id: 't5',
+    title: 'Ivory Classic',
+    category: 'Classic',
+    event_type: 'Wedding',
+    price: '$149',
+    desc: 'Timeless script, soft cream palette, and traditional elegance.',
+    thumb: '',
+    demo: 'https://demo.celebria.com/ivory-classic'
+  },
+  {
+    id: 't6',
+    title: 'Desert Rose',
+    category: 'Golden',
+    event_type: 'Engagement',
+    price: '$139',
+    desc: 'Warm earth tones, dried florals, and free-spirited storytelling.',
+    thumb: '',
+    demo: 'https://demo.celebria.com/desert-rose'
+  },
+  {
+    id: 't7',
+    title: 'Celestial Garden',
+    category: 'VIP',
+    event_type: 'Birthday',
+    price: '$199',
+    desc: 'Starry night sky, constellation map, and glowing envelope animation.',
+    thumb: '',
+    demo: 'https://demo.celebria.com/celestial-garden'
+  },
+  {
+    id: 't8',
+    title: 'Silk & Stone',
+    category: 'Classic',
+    event_type: 'Graduation',
+    price: '$154',
+    desc: 'Architectural lines, stone textures, and understated luxury.',
+    thumb: '',
+    demo: 'https://demo.celebria.com/silk-stone'
+  },
+  {
+    id: 't9',
+    title: 'Little Star',
+    category: 'Golden',
+    event_type: 'Suboo',
+    price: '$119',
+    desc: 'Soft pastels and playful animations perfect for a baby’s Suboo.',
+    thumb: '',
+    demo: 'https://demo.celebria.com/little-star'
+  },
+  {
+    id: 't10',
+    title: 'Corporate Luxe',
+    category: 'VIP',
+    event_type: 'Event',
+    price: '$179',
+    desc: 'Sleek branding-ready invitation for galas and corporate events.',
+    thumb: '',
+    demo: 'https://demo.celebria.com/corporate-luxe'
+  }
 ];
 
 const DEFAULT_ORDERS = [
@@ -41,6 +132,9 @@ const DEFAULT_SETTINGS = {
   metric3Label: 'Customizable'
 };
 
+const VALID_CATEGORIES = ['Classic', 'Golden', 'VIP'];
+const VALID_EVENT_TYPES = ['Wedding', 'Engagement', 'Katb Ktab', 'Birthday', 'Suboo', 'Graduation', 'Event'];
+
 function load(key, fallback) {
   try {
     const raw = localStorage.getItem(key);
@@ -54,13 +148,35 @@ function save(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
-let templates = load('celebria_templates', DEFAULT_TEMPLATES);
+/** Migrate or seed templates so admin always has valid Classic/Golden/VIP + event_type. */
+function getTemplates() {
+  const stored = load('celebria_templates', null);
+  if (
+    Array.isArray(stored) &&
+    stored.length > 0 &&
+    stored.every(
+      t =>
+        t &&
+        typeof t.title === 'string' &&
+        VALID_CATEGORIES.includes(t.category) &&
+        VALID_EVENT_TYPES.includes(t.event_type)
+    )
+  ) {
+    return stored;
+  }
+  // Seed / reset outdated localStorage with hardcoded catalog
+  save('celebria_templates', DEFAULT_TEMPLATES);
+  return DEFAULT_TEMPLATES.slice();
+}
+
+let templates = getTemplates();
 let orders = load('celebria_orders', DEFAULT_ORDERS);
 let settings = load('celebria_settings', DEFAULT_SETTINGS);
 
 const toastEl = document.getElementById('toast');
 
 function showToast(msg, duration = 2800) {
+  if (!toastEl) return;
   toastEl.textContent = msg;
   toastEl.classList.remove('hidden');
   clearTimeout(toastEl._timer);
@@ -102,7 +218,7 @@ function clearAuth() {
 function showDashboard() {
   document.getElementById('login-gate').classList.add('hidden');
   document.getElementById('admin-dashboard').classList.remove('hidden');
-  templates = load('celebria_templates', DEFAULT_TEMPLATES);
+  templates = getTemplates();
   orders = load('celebria_orders', DEFAULT_ORDERS);
   settings = load('celebria_settings', DEFAULT_SETTINGS);
   renderAdminTemplates();
@@ -113,37 +229,39 @@ function showDashboard() {
 function showLogin() {
   document.getElementById('login-gate').classList.remove('hidden');
   document.getElementById('admin-dashboard').classList.add('hidden');
-  document.getElementById('admin-password').value = '';
-  document.getElementById('login-error').classList.add('hidden');
+  const pw = document.getElementById('admin-password');
+  if (pw) pw.value = '';
+  document.getElementById('login-error')?.classList.add('hidden');
 }
 
-document.getElementById('login-form').addEventListener('submit', e => {
+document.getElementById('login-form')?.addEventListener('submit', e => {
   e.preventDefault();
   const pw = document.getElementById('admin-password').value;
-  if (pw === ADMIN_PASSWORD_HASH) {
+  if (pw === ADMIN_PASSWORD) {
     setAuthenticated();
     showDashboard();
     showToast('Welcome back');
   } else {
-    document.getElementById('login-error').classList.remove('hidden');
+    document.getElementById('login-error')?.classList.remove('hidden');
     document.getElementById('admin-password').value = '';
     document.getElementById('admin-password').focus();
   }
 });
 
-document.getElementById('toggle-pw').addEventListener('click', () => {
+document.getElementById('toggle-pw')?.addEventListener('click', () => {
   const input = document.getElementById('admin-password');
   const icon = document.querySelector('#toggle-pw i');
+  if (!input) return;
   if (input.type === 'password') {
     input.type = 'text';
-    icon.className = 'fa-solid fa-eye-slash';
+    if (icon) icon.className = 'fa-solid fa-eye-slash';
   } else {
     input.type = 'password';
-    icon.className = 'fa-solid fa-eye';
+    if (icon) icon.className = 'fa-solid fa-eye';
   }
 });
 
-document.getElementById('logout-btn').addEventListener('click', () => {
+document.getElementById('logout-btn')?.addEventListener('click', () => {
   clearAuth();
   showLogin();
   showToast('Logged out');
@@ -155,28 +273,35 @@ document.querySelectorAll('.admin-nav-item').forEach(btn => {
     document.querySelectorAll('.admin-nav-item').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById(btn.dataset.panel).classList.add('active');
+    document.getElementById(btn.dataset.panel)?.classList.add('active');
   });
 });
 
 /* ---------- Templates CRUD ---------- */
 function renderAdminTemplates() {
   const body = document.getElementById('admin-templates-body');
-  body.innerHTML = templates.map(t => `
+  if (!body) return;
+  body.innerHTML = templates
+    .map(
+      t => `
     <tr>
       <td>
-        ${t.thumb
-      ? `<img class="admin-thumb" src="${escapeHtml(t.thumb)}" alt="" />`
-      : `<div class="admin-thumb admin-thumb-ph"><i class="fa-solid fa-gem"></i></div>`
-    }
+        ${
+          t.thumb
+            ? `<img class="admin-thumb" src="${escapeHtml(t.thumb)}" alt="" referrerpolicy="no-referrer" onerror="this.outerHTML='<div class=\\'admin-thumb admin-thumb-ph\\'><i class=\\'fa-solid fa-gem\\'></i></div>'" />`
+            : `<div class="admin-thumb admin-thumb-ph"><i class="fa-solid fa-gem"></i></div>`
+        }
       </td>
       <td><strong>${escapeHtml(t.title)}</strong></td>
-      <td>${escapeHtml(t.category)}</td>
+      <td><span class="tier-badge tier-${escapeHtml((t.category || '').toLowerCase())}">${escapeHtml(t.category)}</span></td>
+      <td>${escapeHtml(t.event_type || '—')}</td>
       <td>${escapeHtml(t.price)}</td>
       <td>
-        ${t.demo
-      ? `<a href="${escapeHtml(t.demo)}" target="_blank" rel="noopener" class="demo-link"><i class="fa-solid fa-external-link"></i> Demo</a>`
-      : '—'}
+        ${
+          t.demo
+            ? `<a href="${escapeHtml(t.demo)}" target="_blank" rel="noopener" class="demo-link"><i class="fa-solid fa-external-link"></i> Demo</a>`
+            : '—'
+        }
       </td>
       <td>
         <div class="action-btns">
@@ -185,7 +310,9 @@ function renderAdminTemplates() {
         </div>
       </td>
     </tr>
-  `).join('');
+  `
+    )
+    .join('');
 
   body.querySelectorAll('[data-edit]').forEach(btn => {
     btn.addEventListener('click', () => openTemplateModal(btn.dataset.edit));
@@ -213,6 +340,7 @@ function openTemplateModal(editId = null) {
     if (t) {
       document.getElementById('template-title').value = t.title;
       document.getElementById('template-category').value = t.category;
+      document.getElementById('template-event-type').value = t.event_type || 'Wedding';
       document.getElementById('template-price').value = t.price;
       document.getElementById('template-desc').value = t.desc;
       document.getElementById('template-thumb').value = t.thumb || '';
@@ -221,19 +349,31 @@ function openTemplateModal(editId = null) {
   } else {
     templateForm.reset();
     document.getElementById('template-edit-id').value = '';
+    document.getElementById('template-category').value = 'Classic';
+    document.getElementById('template-event-type').value = 'Wedding';
   }
   templateModal.classList.remove('hidden');
 }
 
-document.getElementById('add-template-btn').addEventListener('click', () => openTemplateModal());
+document.getElementById('add-template-btn')?.addEventListener('click', () => openTemplateModal());
 
-templateForm.addEventListener('submit', e => {
+document.getElementById('reset-templates-btn')?.addEventListener('click', () => {
+  if (confirm('Reset all templates to the hardcoded default catalog? This cannot be undone on this browser.')) {
+    templates = DEFAULT_TEMPLATES.slice();
+    save('celebria_templates', templates);
+    renderAdminTemplates();
+    showToast('Templates reset to defaults');
+  }
+});
+
+templateForm?.addEventListener('submit', e => {
   e.preventDefault();
   const id = document.getElementById('template-edit-id').value;
   const data = {
     id: id || 't' + Date.now(),
     title: document.getElementById('template-title').value.trim(),
     category: document.getElementById('template-category').value,
+    event_type: document.getElementById('template-event-type').value,
     price: document.getElementById('template-price').value.trim(),
     desc: document.getElementById('template-desc').value.trim(),
     thumb: document.getElementById('template-thumb').value.trim(),
@@ -254,7 +394,10 @@ templateForm.addEventListener('submit', e => {
 /* ---------- Orders ---------- */
 function renderOrders() {
   const body = document.getElementById('admin-orders-body');
-  body.innerHTML = orders.map(o => `
+  if (!body) return;
+  body.innerHTML = orders
+    .map(
+      o => `
     <tr>
       <td><strong>${escapeHtml(o.customer)}</strong></td>
       <td>${escapeHtml(o.template)}</td>
@@ -278,7 +421,9 @@ function renderOrders() {
         </div>
       </td>
     </tr>
-  `).join('');
+  `
+    )
+    .join('');
 
   body.querySelectorAll('.status-select').forEach(sel => {
     sel.addEventListener('change', () => {
@@ -303,7 +448,7 @@ function renderOrders() {
   });
 }
 
-document.getElementById('add-order-btn').addEventListener('click', () => {
+document.getElementById('add-order-btn')?.addEventListener('click', () => {
   const sample = {
     id: 'o' + Date.now(),
     customer: 'New Couple',
@@ -320,19 +465,23 @@ document.getElementById('add-order-btn').addEventListener('click', () => {
 
 /* ---------- Settings ---------- */
 function loadSettingsIntoForm() {
-  document.getElementById('setting-hero-title').value = settings.heroTitle || '';
-  document.getElementById('setting-hero-subtitle').value = settings.heroSubtitle || '';
-  document.getElementById('setting-whatsapp').value = settings.whatsapp || '';
-  document.getElementById('setting-promo').value = settings.promo || '';
-  document.getElementById('setting-metric1-value').value = settings.metric1Value || '';
-  document.getElementById('setting-metric1-label').value = settings.metric1Label || '';
-  document.getElementById('setting-metric2-value').value = settings.metric2Value || '';
-  document.getElementById('setting-metric2-label').value = settings.metric2Label || '';
-  document.getElementById('setting-metric3-value').value = settings.metric3Value || '';
-  document.getElementById('setting-metric3-label').value = settings.metric3Label || '';
+  const set = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.value = val || '';
+  };
+  set('setting-hero-title', settings.heroTitle);
+  set('setting-hero-subtitle', settings.heroSubtitle);
+  set('setting-whatsapp', settings.whatsapp);
+  set('setting-promo', settings.promo);
+  set('setting-metric1-value', settings.metric1Value);
+  set('setting-metric1-label', settings.metric1Label);
+  set('setting-metric2-value', settings.metric2Value);
+  set('setting-metric2-label', settings.metric2Label);
+  set('setting-metric3-value', settings.metric3Value);
+  set('setting-metric3-label', settings.metric3Label);
 }
 
-document.getElementById('save-settings-btn').addEventListener('click', () => {
+document.getElementById('save-settings-btn')?.addEventListener('click', () => {
   settings = {
     heroTitle: document.getElementById('setting-hero-title').value,
     heroSubtitle: document.getElementById('setting-hero-subtitle').value,
