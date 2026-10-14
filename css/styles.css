@@ -396,7 +396,7 @@ ul { list-style: none; }
 }
 
 .template-thumb {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 6;
   background: linear-gradient(135deg, #e8d5a8 0%, #c9a96e 50%, #a88b4a 100%);
   display: flex;
   align-items: center;
