@@ -20,8 +20,12 @@
         <i class="fa-solid fa-gem"></i>
         <span>Celebria Admin</span>
       </div>
-      <p class="login-hint">Enter the admin password to continue</p>
+      <p class="login-hint">Sign in with your admin account to continue</p>
       <form id="login-form">
+        <div class="form-group">
+          <label for="admin-email">Email</label>
+          <input type="email" id="admin-email" placeholder="you@example.com" required autocomplete="username" />
+        </div>
         <div class="form-group">
           <label for="admin-password">Password</label>
           <div class="password-wrap">
@@ -31,7 +35,7 @@
             </button>
           </div>
         </div>
-        <p class="login-error hidden" id="login-error">Incorrect password. Please try again.</p>
+        <p class="login-error hidden" id="login-error">Incorrect email or password. Please try again.</p>
         <button type="submit" class="btn btn-primary btn-lg login-btn">
           <i class="fa-solid fa-lock-open"></i> Unlock Dashboard
         </button>
@@ -154,7 +158,7 @@
         <div class="admin-header">
           <h1><i class="fa-solid fa-inbox"></i> Orders & Inquiries</h1>
           <button class="btn btn-outline" id="add-order-btn">
-            <i class="fa-solid fa-plus"></i> Add Sample Order
+            <i class="fa-solid fa-plus"></i> Add Test Order
           </button>
         </div>
         <div class="admin-table-wrap">
