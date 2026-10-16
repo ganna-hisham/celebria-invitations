@@ -42,6 +42,8 @@ function save(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
+let supabaseClient = null;
+
 function getSupabase() {
   const cfg = window.CELEBRIA_SUPABASE || {};
   if (!cfg.url || !cfg.anonKey || cfg.url.includes('YOUR_SUPABASE') || cfg.anonKey.includes('YOUR_SUPABASE')) {
@@ -51,7 +53,8 @@ function getSupabase() {
     console.error('Supabase SDK not loaded');
     return null;
   }
-  return window.supabase.createClient(cfg.url, cfg.anonKey);
+  if (!supabaseClient) supabaseClient = window.supabase.createClient(cfg.url, cfg.anonKey);
+  return supabaseClient;
 }
 
 function mapRow(row) {
@@ -88,7 +91,6 @@ async function fetchTemplatesFromSupabase() {
 }
 
 let templates = [];
-let orders = load('celebria_orders', []);
 let settings = load('celebria_settings', DEFAULT_SETTINGS);
 let filterCategory = 'All';
 let filterEventType = 'All';
@@ -217,23 +219,39 @@ function openInquiryModal(preselect = '') {
 }
 
 document.getElementById('open-inquiry-form')?.addEventListener('click', () => openInquiryModal());
-document.getElementById('inquiry-form')?.addEventListener('submit', e => {
+document.getElementById('inquiry-form')?.addEventListener('submit', async e => {
   e.preventDefault();
-  const newOrder = {
-    id: 'o' + Date.now(),
+  const form = e.currentTarget;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const client = getSupabase();
+  if (!client) {
+    showToast('Online inquiries are temporarily unavailable. Please contact us on WhatsApp.');
+    return;
+  }
+
+  const payload = {
     customer: document.getElementById('inquiry-name').value.trim(),
     template: document.getElementById('inquiry-template').value || 'General Inquiry',
-    date: document.getElementById('inquiry-date').value || '',
+    event_date: document.getElementById('inquiry-date').value || null,
     whatsapp: document.getElementById('inquiry-whatsapp').value.trim(),
-    status: 'pending',
-    message: document.getElementById('inquiry-message')?.value.trim() || '',
-    createdAt: new Date().toISOString()
+    message: document.getElementById('inquiry-message')?.value.trim() || null,
+    status: 'pending'
   };
-  orders = load('celebria_orders', []);
-  orders.unshift(newOrder);
-  save('celebria_orders', orders);
-  document.getElementById('inquiry-modal')?.classList.add('hidden');
-  showToast("Inquiry submitted! We'll contact you soon.");
+
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending\u2026'; }
+  try {
+    // Do NOT chain .select() here: anonymous visitors may insert but not read orders.
+    const { error } = await client.from('orders').insert([payload]);
+    if (error) throw error;
+    document.getElementById('inquiry-modal')?.classList.add('hidden');
+    form.reset();
+    showToast("Inquiry submitted! We'll contact you soon.");
+  } catch (err) {
+    console.error('Order submit failed:', err);
+    showToast('Could not send your inquiry. Please try again or message us on WhatsApp.', 4500);
+  } finally {
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit Inquiry'; }
+  }
 });
 
 document.querySelectorAll('[data-close]').forEach(btn => {
